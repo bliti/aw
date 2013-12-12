@@ -8,10 +8,10 @@ class Collection(models.Model):
 
 
     def __unicode__(self):
-        return self.name
+        return str(self.id)
 
 
-class Item(models.model):
+class Item(models.Model):
     """each specific item in a todo collection"""
     todo = models.TextField(default='...')
     created_at = models.DateTimeField(auto_now_add=True)
