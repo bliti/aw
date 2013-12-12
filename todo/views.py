@@ -1,3 +1,4 @@
 from django.shortcuts import render
+from models import Collection, Item
 
-# Create your views here.
+#generic views for this beauty
