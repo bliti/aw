@@ -1,0 +1,4 @@
+<h1>All your items.</h1>
+	{% for item in object_list %}
+		<p>{{item.name}} | item.created_at</p>
+	{% endfor %}

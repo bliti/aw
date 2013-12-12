@@ -13,8 +13,6 @@ class Collection(models.Model):
 
 class Item(models.model):
     """each specific item in a todo collection"""
-
-
     todo = models.TextField(default='...')
     created_at = models.DateTimeField(auto_now_add=True)
     collection = models.ForeignKey('Collection')
