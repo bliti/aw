@@ -1,4 +1,4 @@
 <h1>Your collections of todo's.</h1>
 	{% for collection in object_list %}
-		<p>{{collection.name}} | {{collection.created_at}}</p>
+		<p>Name: {{collection.name}} | Created on: {{collection.created_at}}</p>
 	{% endfor %}
