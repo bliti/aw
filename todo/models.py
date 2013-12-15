@@ -7,6 +7,11 @@ class Collection(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
+    class Meta:
+
+        ordering = ['-id']
+
+
     def __unicode__(self):
         return str(self.id)
 
@@ -17,6 +22,9 @@ class Item(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     collection = models.ForeignKey('Collection')
 
+
+    class Meta:
+        ordering = ['-id']
 
     def __unicode__(self):
         return self.todo
