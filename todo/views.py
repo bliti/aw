@@ -47,10 +47,7 @@ class ItemCreate(CreateView):
     model = Item
     fields = ['todo']
     template_name = 'item_create.html'
-    success_url = reverse_lazy('collection_detail')
-
     
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.collection = Collection.objects.get(id=self.kwargs['pk'])
-        self.object.save()
+        form.instance.collection = get_object_or_404(Collection,id=self.kwargs['pk'])
+        return super(ItemCreate, self).form_valid(form)
