@@ -5,10 +5,6 @@ from django.core.urlresolvers import reverse_lazy
 from models import Collection, Item
 
 
-def home(request):
-    return render(request, 'index.html')
-
-
 class CollectionList(ListView):
     """view all collections"""
     model = Collection
