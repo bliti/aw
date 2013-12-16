@@ -9,7 +9,6 @@ class Collection(models.Model):
 
 
     class Meta:
-
         ordering = ['-id']
 
 
@@ -23,6 +22,7 @@ class Item(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     collection = models.ForeignKey('Collection')
     
+    
     def get_absolute_url(self):
         return reverse('item_detail', kwargs={'pk': self.pk})
 
@@ -30,5 +30,6 @@ class Item(models.Model):
     class Meta:
         ordering = ['-id']
 
+    
     def __unicode__(self):
         return self.todo

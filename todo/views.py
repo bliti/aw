@@ -49,5 +49,6 @@ class ItemCreate(CreateView):
     template_name = 'item_create.html'
     
     def form_valid(self, form):
+        #get the foreign key collection object
         form.instance.collection = get_object_or_404(Collection,id=self.kwargs['pk'])
         return super(ItemCreate, self).form_valid(form)
