@@ -54,6 +54,7 @@ class ItemCreate(CreateView):
     model = Item
     fields = ['todo']
     template_name = 'item_create.html'
+    success_url = reverse_lazy('item_list')
     
     
     #def form_valid(self, form):

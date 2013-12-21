@@ -3,7 +3,16 @@
 <p><a href="{% url 'item_create' %}">New item</a></p>
 
 <h1>All your items.</h1>
+
+{% if object_list %}
+	
 	{% for item in object_list %}
 	<p>Todo: <a href="{% url 'item_detail' item.id %}">{{item.todo}} | 
 	{{item.created_at}}</a></p>
 	{% endfor %}
+
+{% else %}
+   
+<p>You have no items yet.</p>
+
+{% endif %}
