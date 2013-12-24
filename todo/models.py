@@ -1,4 +1,4 @@
-#from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -21,6 +21,7 @@ class Item(models.Model):
     """each specific item in a todo collection"""
     todo = models.TextField(default='...')
     created_at = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User)
     #collection = models.ForeignKey('Collection')
     
     

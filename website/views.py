@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from registration.backends.simple.views import RegistrationView
 
-# Create your views here.
+
+class AWRegistrationView(RegistrationView):
+    
+    
+    def get_success_url(self, request, user):
+        return 'item_list'

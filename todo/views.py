@@ -1,4 +1,5 @@
-from django.shortcuts import render#, get_object_or_404
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -43,6 +44,10 @@ class ItemList(ListView):
     template_name = 'item_list.html'
 
 
+    def get_queryset(self):
+        return get_object_or_404(User, id=self.request.user.id).item_set.all() 
+
+
 class ItemDetail(DetailView):
     """view a specific item"""
     model = Item
@@ -55,6 +60,12 @@ class ItemCreate(CreateView):
     fields = ['todo']
     template_name = 'item_create.html'
     success_url = reverse_lazy('item_list')
+    
+    
+    def form_valid(self, form):
+        #get the foreign key collection object
+        form.instance.user = get_object_or_404(User, id=self.request.user.id)
+        return super(ItemCreate, self).form_valid(form)
     
     
     #def form_valid(self, form):

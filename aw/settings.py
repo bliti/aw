@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'todo',
     'website',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,3 +83,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#django-registration settings
+#using simple backend option
+
+REGISTRATION_OPEN = True
+
+LOGIN_REDIRECT_URL = 'item_list'
