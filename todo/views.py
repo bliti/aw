@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView
@@ -54,6 +55,13 @@ class ItemDetail(DetailView):
     template_name = "item_view.html"
 
 
+    def get_object(self, queryset=None):
+        object = super(ItemDetail, self).get_object(queryset)
+        if object.user_id != self.request.user.id:
+            raise Http404
+        return object
+        
+        
 class ItemCreate(CreateView):
     """create a new item"""
     model = Item
