@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
-from website.views import AWRegistrationView
-
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import RedirectView
 
 from django.contrib import admin
 admin.autodiscover()
@@ -10,9 +10,13 @@ urlpatterns = patterns('',
     # url(r'^$', 'aw.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    #
+    #this line redirects users after registration is successful
+    #to the view where their list of items is displayed
+    url(r'^users/(?P<pk>\w+)/$', RedirectView.as_view(url=reverse_lazy('item_list'))),
+    #
+    #
     url(r'^todo/', include('todo.urls')),
-    url(r'^$', include('website.urls')),
-    # custom registration view
-    url(r'^register/$', AWRegistrationView.as_view(), name='registration_register'),
     (r'^accounts/', include('registration.backends.simple.urls')),
-)
+    url(r'^$', include('website.urls')),
+    )
